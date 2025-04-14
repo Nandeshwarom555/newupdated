@@ -1,0 +1,29 @@
+# Deployment Instructions for Koyeb
+
+## Environment Variables Required:
+- TELEGRAM_TOKEN - Your Telegram bot token from BotFather
+- PORT - Port for the web server (automatically set by Koyeb)
+
+## Deployment Steps:
+1. Create a new Koyeb application
+2. Choose the "Git Repository" deployment method
+3. Connect to your Git repository
+4. Leave the build configuration as default
+5. Set the following environment variables:
+   - TELEGRAM_TOKEN (your bot token)
+
+## Health Check Configuration:
+- Path: /health
+- Port: $PORT (default)
+- Initial delay: 10s
+- Interval: 10s
+- Timeout: 5s
+- Success threshold: 1
+- Failure threshold: 3
+
+## Important Notes:
+- The application runs both the Flask web server and the Telegram bot
+- The web server provides a health check endpoint for Koyeb's TCP health checks
+- No worker processes are used to keep compatibility with Koyeb's free hobby plan
+- The application has no file size limitations for video processing
+- Videos are uploaded to file hosting services instead of sent through Telegram
